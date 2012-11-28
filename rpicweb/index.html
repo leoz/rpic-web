@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Raspberry Pi Car</title>
+        <link rel="stylesheet" href="webapp/webapp.css" />
+		<link rel="stylesheet" href="themes/rpic_theme.min.css" />
+		<link rel="stylesheet" href="jquery/jquery.mobile.structure-1.2.0.min.css" />
+		<script src="jquery/jquery-1.7.2.min.js"></script>
+		<script src="jquery/jquery.mobile-1.2.0.min.js"></script>
+        <script src="webapp/webapp.js"></script>
+        <script src="scripts/rpic.js"></script>
+	</head>
+	<body>
+		<div data-role="page" data-theme="a">
+			<div data-role="header" data-position="inline">
+                <h3 id="rpic_header">
+                    Raspberry Pi Car
+                </h3>
+            </div>
+			<div data-role="content" data-theme="a">
+                <div style="width: 256px; height: 160px; position: relative; margin-left: auto; margin-right: auto; background-color: #ffffff; border: 1px solid #b8b8b8;">
+                    <img id="rpic_camera" src="images/camera_icon_white.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -64px; margin-top: -64px" />
+                </div>
+                <div class="ui-grid-b">
+                    <div class="ui-block-a">
+                    </div>
+                    <div class="ui-block-b">
+                        <a id="rpic_forward" data-role="button" data-theme="a" href="#page" onclick="rpic_cmd_forward(); return false" rel="external">
+                            FWD
+                        </a>
+                    </div>
+                    <div class="ui-block-c">
+                    </div>
+                    <div class="ui-block-a">
+                        <a id="rpic_left" data-role="button" data-theme="a" href="#page" onclick="rpic_cmd_left(); return false" rel="external">
+                            Left
+                        </a>
+                    </div>
+                    <div class="ui-block-b">
+                        <a id="rpic_stop" data-role="button" data-theme="a" href="#page" onclick="rpic_cmd_stop(); return false" rel="external">
+                            Stop
+                        </a>
+                    </div>
+                    <div class="ui-block-c">
+                        <a id="rpic_right" data-role="button" data-theme="a" href="#page" onclick="rpic_cmd_right(); return false" rel="external">
+                            Right
+                        </a>
+                    </div>
+                    <div class="ui-block-a">
+                    </div>
+                    <div class="ui-block-b">
+                        <a id="rpic_backward" data-role="button" data-theme="a" href="#page" onclick="rpic_cmd_backward(); return false" rel="external">
+                            Back
+                        </a>
+                    </div>
+                    <div class="ui-block-c">
+                    </div>
+                </div>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <a id="rpic_deccelerate" data-role="button" data-theme="a" href="#page" onclick="rpic_cmd_deccelerate(); return false" rel="external">
+                            &lt;&lt;&lt;
+                        </a>
+                    </div>
+                    <div class="ui-block-b">
+                        <a id="rpic_accelerate" data-role="button" data-theme="a" href="#page" onclick="rpic_cmd_accelerate(); return false" rel="external">
+                            &gt;&gt;&gt;
+                        </a>
+                    </div>
+                </div>
+			</div>
+            <div data-role="footer"  data-position="inline">
+                <h3 id="rpic_footer">
+                    Status: Idle
+                </h3>
+            </div>
+		</div>
+	</body>
+</html>
