@@ -1,7 +1,7 @@
 #ifndef __RPIC_WEB_H__
 #define __RPIC_WEB_H__
 
-#define RPIC_COMMANDS 7
+#define RPIC_COMMANDS 8
 
 static char* rpic_commands [RPIC_COMMANDS] = {
     "rpic_fwrd",
@@ -10,7 +10,8 @@ static char* rpic_commands [RPIC_COMMANDS] = {
     "rpic_left",
     "rpic_rght",
     "rpic_dcl",
-    "rpic_acl"
+    "rpic_acl",
+    "rpic_ver"
 };
 
 #define RPIC_CMD_VOID -1
@@ -21,5 +22,6 @@ static char* rpic_commands [RPIC_COMMANDS] = {
 #define RPIC_CMD_RGHT 4
 #define RPIC_CMD_DCL  5
 #define RPIC_CMD_ACL  6
+#define RPIC_CMD_VER  7
 
 #endif /* __RPIC_WEB_H__ */

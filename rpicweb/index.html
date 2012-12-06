@@ -12,9 +12,16 @@
 		<script src="jquery/jquery.mobile-1.2.0.min.js"></script>
         <script src="webapp/webapp.js"></script>
         <script src="scripts/rpic.js"></script>
+        <script>
+            $('#rpic_main_page').live('pageinit', function(event){
+                    rpic_get_version();
+                    rpic_show_status("Ready");
+                    rpic_show_command("Idle");
+                });
+        </script>               
 	</head>
 	<body>
-		<div data-role="page" data-theme="a">
+		<div data-role="page" id="rpic_main_page" data-theme="a">
 			<div data-role="header" data-position="inline">
                 <h3 id="rpic_header">
                     Raspberry Pi Car
@@ -72,10 +79,15 @@
                     </div>
                 </div>
 			</div>
+
+		    <div class="ui-grid-b">
+			    <div class="ui-block-a"><div class="ui-bar ui-bar-a" id="rpic_info_version">-----</div></div>
+			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" id="rpic_info_status">-----</div></div>
+			    <div class="ui-block-c"><div class="ui-bar ui-bar-a" id="rpic_info_command">-----</div></div>
+		    </div>
+
             <div data-role="footer"  data-position="inline">
-                <h3 id="rpic_footer">
-                    Status: Idle
-                </h3>
+                <h3 id="rpic_footer">-----</h3>
             </div>
 		</div>
 	</body>
