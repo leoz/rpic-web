@@ -15,6 +15,7 @@
         <script>
             $('#rpic_main_page').live('pageinit', function(event){
                     rpic_get_version();
+                    rpic_poll();
                     rpic_show_status("Ready");
                     rpic_show_command("Idle");
                 });

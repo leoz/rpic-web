@@ -45,6 +45,11 @@ function rpic_get_version() {
     $.get(window.location.protocol+ "//" + window.location.host + "?" + command, rpic_show_version);
 }
 
+function rpic_get_time() {
+    var command = "rpic_time";
+    $.get(window.location.protocol+ "//" + window.location.host + "?" + command, rpic_show_time);
+}
+
 function rpic_show_version(response) {
     $("#rpic_info_version").text("Version: " + response);
 }
@@ -57,4 +62,16 @@ function rpic_show_command(response) {
     $("#rpic_info_command").text("Command: " + response);
 }
 
+function rpic_show_time(response) {
+    $("#rpic_footer").text("Time: " + response);
+}
+
+function rpic_poll() {
+    setTimeout(function() {
+        // Update data after 1 second(s)
+        rpic_get_time();
+        //Setup the next poll recursively
+        rpic_poll();
+    }, 1000);
+}
 

@@ -4,6 +4,24 @@
 #include "rpic-lib.h"
 #include "rpic-web.h"
 
+/*****************************************************************************/
+
+#include <time.h>
+
+static char* rpi_car_dev_time()
+{
+    static char data [11];
+    
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+
+    sprintf(data, "%d-%d-%d %d:%d:%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);    
+    
+    return data;
+}
+
+/*****************************************************************************/
+
 static const char* rpic_web_reply =
     "HTTP/1.1 200 OK\r\n"
     "Cache: no-cache\r\n"
@@ -50,8 +68,17 @@ static int rpic_web_check_command(struct mg_connection *conn, const char* comman
         }
         else if (strcmp(command, rpic_commands[RPIC_CMD_VER]) == 0) {
             const char* data = rpi_car_dev_version();        
-            rpic_web_send_data(conn, data);
+            if (data != NULL) {
+                rpic_web_send_data(conn, data);
+            }
             return RPIC_CMD_VER;
+        }
+        else if (strcmp(command, rpic_commands[RPIC_CMD_TIME]) == 0) {
+            const char* data = rpi_car_dev_time();        
+            if (data != NULL) {
+                rpic_web_send_data(conn, data);
+            }
+            return RPIC_CMD_TIME;
         }
     }
     return RPIC_CMD_VOID;
