@@ -51,19 +51,19 @@ function rpic_get_time() {
 }
 
 function rpic_show_version(response) {
-    $("#rpic_info_version").text("Version: " + response);
+    $("#rpic_info_version").text(response);
 }
 
 function rpic_show_status(response) {
-    $("#rpic_info_status").text("Status: " + response);
+    $("#rpic_info_status").text(response);
 }
 
 function rpic_show_command(response) {
-    $("#rpic_info_command").text("Command: " + response);
+    $("#rpic_info_command").text(response);
 }
 
 function rpic_show_time(response) {
-    $("#rpic_footer").text("Time: " + response);
+    $("#rpic_info_time").text(response);
 }
 
 function rpic_poll() {

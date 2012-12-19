@@ -1,95 +1,252 @@
-
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Raspberry Pi Car</title>
-        <link rel="stylesheet" href="webapp/webapp.css" />
-		<link rel="stylesheet" href="themes/rpic_theme.min.css" />
-		<link rel="stylesheet" href="jquery/jquery.mobile.structure-1.2.0.min.css" />
-		<script src="jquery/jquery-1.7.2.min.js"></script>
-		<script src="jquery/jquery.mobile-1.2.0.min.js"></script>
-        <script src="webapp/webapp.js"></script>
-        <script src="scripts/rpic.js"></script>
-        <script>
-            $('#rpic_main_page').live('pageinit', function(event){
-                    rpic_get_version();
-                    rpic_poll();
-                    rpic_show_status("Ready");
-                    rpic_show_command("Idle");
-                });
-        </script>               
-	</head>
-	<body>
-		<div data-role="page" id="rpic_main_page" data-theme="a">
-			<div data-role="header" data-position="inline">
-                <h3 id="rpic_header">
-                    Raspberry Pi Car
-                </h3>
-            </div>
-			<div data-role="content" data-theme="a">
-                <div style="width: 256px; height: 160px; position: relative; margin-left: auto; margin-right: auto; background-color: #ffffff; border: 1px solid #b8b8b8;">
-                    <img id="rpic_camera" src="images/camera_icon_white.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -64px; margin-top: -64px" />
-                </div>
-                <div class="ui-grid-b">
-                    <div class="ui-block-a">
-                    </div>
-                    <div class="ui-block-b">
-                        <a id="rpic_forward" data-role="button" data-theme="a" href="#page" onclick="rpic_cmd_forward(); return false" rel="external">
-                            FWD
-                        </a>
-                    </div>
-                    <div class="ui-block-c">
-                    </div>
-                    <div class="ui-block-a">
-                        <a id="rpic_left" data-role="button" data-theme="a" href="#page" onclick="rpic_cmd_left(); return false" rel="external">
-                            Left
-                        </a>
-                    </div>
-                    <div class="ui-block-b">
-                        <a id="rpic_stop" data-role="button" data-theme="a" href="#page" onclick="rpic_cmd_stop(); return false" rel="external">
-                            Stop
-                        </a>
-                    </div>
-                    <div class="ui-block-c">
-                        <a id="rpic_right" data-role="button" data-theme="a" href="#page" onclick="rpic_cmd_right(); return false" rel="external">
-                            Right
-                        </a>
-                    </div>
-                    <div class="ui-block-a">
-                    </div>
-                    <div class="ui-block-b">
-                        <a id="rpic_backward" data-role="button" data-theme="a" href="#page" onclick="rpic_cmd_backward(); return false" rel="external">
-                            Back
-                        </a>
-                    </div>
-                    <div class="ui-block-c">
-                    </div>
-                </div>
-                <div class="ui-grid-a">
-                    <div class="ui-block-a">
-                        <a id="rpic_deccelerate" data-role="button" data-theme="a" href="#page" onclick="rpic_cmd_deccelerate(); return false" rel="external">
-                            &lt;&lt;&lt;
-                        </a>
-                    </div>
-                    <div class="ui-block-b">
-                        <a id="rpic_accelerate" data-role="button" data-theme="a" href="#page" onclick="rpic_cmd_accelerate(); return false" rel="external">
-                            &gt;&gt;&gt;
-                        </a>
-                    </div>
-                </div>
-			</div>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Raspberry Pi Car</title>
+    <link rel="stylesheet" href="jquery/jquery-ui.css"/>
+    <link rel="stylesheet" href="jquery/jquery.mobile-1.2.0.min.css"/>
+    <link rel="stylesheet" href="themes/rpic_theme.min.css" />
+	<link rel="stylesheet" href="webapp/webapp.css" />
+	<link rel="stylesheet" href="custom/custom.css" />
+    <script src="jquery/jquery-1.8.0.min.js"></script>
+    <script src="jquery/jquery-ui.min.js"></script>
+    <script src="jquery/jquery.mobile-1.2.0.min.js"></script>
+	<script src="webapp/webapp.js"></script>
+    <script src="rpic/rpic.js"></script>
+	<script src="custom/custom.js"></script>
+</head>
+<body>
 
-		    <div class="ui-grid-b">
-			    <div class="ui-block-a"><div class="ui-bar ui-bar-a" id="rpic_info_version">-----</div></div>
-			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" id="rpic_info_status">-----</div></div>
-			    <div class="ui-block-c"><div class="ui-bar ui-bar-a" id="rpic_info_command">-----</div></div>
-		    </div>
-
-            <div data-role="footer"  data-position="inline">
-                <h3 id="rpic_footer">-----</h3>
+<div data-role="page" id="rpic_page_main" data-title="RPi Car: Main" data-theme="a">
+    <div data-role="header">
+        <a data-rel="back" data-transition="slide" data-icon="back">Go back</a>
+        <h6>Main</h6>
+        <a href="#rpic_page_settings" data-transition="slide" data-icon="forward">Settings</a>		
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#rpic_page_main" data-transition="slide">Main</a></li>
+				<li><a href="#rpic_page_settings" data-transition="slide">Settings</a></li>
+				<li><a href="#rpic_page_about" data-transition="slide">About</a></li>
+			</ul>
+		</div>		
+    </div>
+	<div data-role="content">
+        <div style="width: 256px; height: 160px; position: relative; margin-left: auto; margin-right: auto; background-color: #ffffff; border: 1px solid #b8b8b8;">
+            <img id="rpic_camera" src="images/camera_icon_white.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -64px; margin-top: -64px" />
+        </div>
+        <div class="ui-grid-b">
+            <div class="ui-block-a">
             </div>
-		</div>
-	</body>
+            <div class="ui-block-b">
+                <a id="rpic_forward" data-role="button" data-theme="a" href="#rpic_page_main" onclick="rpic_cmd_forward(); return false" rel="external">
+                    FWD
+                </a>
+            </div>
+            <div class="ui-block-c">
+            </div>
+            <div class="ui-block-a">
+                <a id="rpic_left" data-role="button" data-theme="a" href="#rpic_page_main" onclick="rpic_cmd_left(); return false" rel="external">
+                    Left
+                </a>
+            </div>
+            <div class="ui-block-b">
+                <a id="rpic_stop" data-role="button" data-theme="a" href="#rpic_page_main" onclick="rpic_cmd_stop(); return false" rel="external">
+                    Stop
+                </a>
+            </div>
+            <div class="ui-block-c">
+                <a id="rpic_right" data-role="button" data-theme="a" href="#rpic_page_main" onclick="rpic_cmd_right(); return false" rel="external">
+                    Right
+                </a>
+            </div>
+            <div class="ui-block-a">
+            </div>
+            <div class="ui-block-b">
+                <a id="rpic_backward" data-role="button" data-theme="a" href="#rpic_page_main" onclick="rpic_cmd_backward(); return false" rel="external">
+                    Back
+                </a>
+            </div>
+            <div class="ui-block-c">
+            </div>
+        </div>
+        <div class="ui-grid-a">
+            <div class="ui-block-a">
+                <a id="rpic_deccelerate" data-role="button" data-theme="a" href="#rpic_page_main" onclick="rpic_cmd_deccelerate(); return false" rel="external">
+                    &lt;&lt;&lt;
+                </a>
+            </div>
+            <div class="ui-block-b">
+                <a id="rpic_accelerate" data-role="button" data-theme="a" href="#rpic_page_main" onclick="rpic_cmd_accelerate(); return false" rel="external">
+                    &gt;&gt;&gt;
+                </a>
+            </div>
+        </div>
+        
+		<ul data-role="listview" data-divider-theme="a" data-inset="true">					
+			<li data-theme="c">
+				<img src="images/DefaultIcon/png/128x128/time.png" />
+				<div class="ui-grid-a ui-li-desc center-wrapper">
+					<div class="ui-block-a block-settings-a">
+						<h3>Time</h3>
+					</div>
+					<div class="ui-block-b block-settings-b">
+						<b id="rpic_info_time">XX</b>
+					</div>
+				</div>																		
+			 </li>
+			<li data-theme="c">
+				<img src="images/DefaultIcon/png/128x128/info.png" />
+				<div class="ui-grid-a ui-li-desc center-wrapper">
+					<div class="ui-block-a block-settings-a">
+						<h3>Info</h3>
+					</div>
+					<div class="ui-block-b block-settings-b">
+						<p><b>Status: </b><span id="rpic_info_status">XX</span></p>
+						<p><b>Command: </b><span id="rpic_info_command">XX</span></p>
+						<p><b>Version: </b><span id="rpic_info_version">XX</span></p>
+					</div>
+				</div>																		
+			</li>					
+		</ul>                
+        
+	</div>    
+    <div data-role="footer" data-position="fixed">
+        <h2>Raspberry Pi Car</h2>
+    </div>
+</div>
+
+<div data-role="page" id="rpic_page_settings" data-title="RPi Car: Settings" data-theme="a">
+    <div data-role="header">
+        <a data-rel="back" data-transition="slide" data-icon="back">Go back</a>
+        <h6>Settings</h6>
+        <a href="#rpic_page_about" data-transition="slide" data-icon="forward">About</a>
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#rpic_page_main" data-transition="slide">Main</a></li>
+				<li><a href="#rpic_page_settings" data-transition="slide">Settings</a></li>
+				<li><a href="#rpic_page_about" data-transition="slide">About</a></li>
+			</ul>
+		</div>		
+    </div>
+	
+	<div data-role="content">
+		<ul data-role="listview" data-divider-theme="a" data-inset="true">					
+			<li data-theme="c">
+				<img src="images/DefaultIcon/png/128x128/time-alt.png" />
+				<div class="ui-grid-a ui-li-desc center-wrapper">
+					<div class="ui-block-a block-settings-a">
+						<h3>Uptime</h3>
+					</div>
+					<div class="ui-block-b block-settings-b">
+						<b>XX hours XX minutes XX seconds</b>
+					</div>
+				</div>																		
+			 </li>
+			<li data-theme="c">
+				<img src="images/DefaultIcon/png/128x128/hardware-processor.png" />
+				<div class="ui-grid-a ui-li-desc center-wrapper">
+					<div class="ui-block-a block-settings-a">
+						<h3>CPU</h3>
+					</div>
+					<div class="ui-block-b block-settings-b">
+						<p>Loads: 1 Min: <b>XXX</b> * 5 Mins: <b>XXX</b> * 15 Mins: <b>XXX</b></p>
+						<p>CPU is rinning at: <b>XXX MHz</b></p>
+					</div>
+				</div>																		
+			</li>
+			<li data-theme="c">
+				<img src="images/DefaultIcon/png/128x128/hardware-chip.png" />
+				<div class="ui-grid-a ui-li-desc center-wrapper">
+					<div class="ui-block-a block-settings-a">
+						<h3>Memory</h3>
+					</div>
+					<div class="ui-block-b block-settings-b">
+						<p>Total: <b>XXX GB</b> * Free: <b>XXX GB</b>  * Used: <b>XXX GB</b></p>
+						<br>
+						<div id="progressbar1"></div>
+					</div>
+				</div>																		
+			 </li>
+			<li data-theme="c">
+				<img src="images/DefaultIcon/png/128x128/database-reload.png" />
+				<div class="ui-grid-a ui-li-desc center-wrapper">
+					<div class="ui-block-a block-settings-a">
+						<h3>Swap</h3>
+					</div>
+					<div class="ui-block-b block-settings-b">
+						<p>Total: <b>XXX GB</b> * Free: <b>XXX GB</b>  * Used: <b>XXX GB</b></p>
+						<br>
+						<div id="progressbar2"></div>
+						
+					</div>
+				</div>																		
+			</li>
+			<li data-theme="c">
+				<img src="images/DefaultIcon/png/128x128/drive-disk-cd.png" />
+				<div class="ui-grid-a ui-li-desc center-wrapper">
+					<div class="ui-block-a block-settings-a">
+						<h3>SD Card</h3>
+					</div>
+					<div class="ui-block-b block-settings-b">
+						<p>Total: <b>XXX GB</b> * Free: <b>XXX GB</b></p>
+						<br>
+						<div id="progressbar3"></div>
+					</div>
+				</div>																		
+			 </li>
+			<li data-theme="c">
+				<img src="images/DefaultIcon/png/128x128/network-alt-1.png" />
+				<div class="ui-grid-a ui-li-desc center-wrapper">
+					<div class="ui-block-a block-settings-a">
+						<h3>Network</h3>
+					</div>
+					<div class="ui-block-b block-settings-b">
+						<span>TBD</span>
+					</div>
+				</div>																		
+			</li>
+			<li data-theme="c">
+				<img src="images/DefaultIcon/png/128x128/user.png" />
+				<div class="ui-grid-a ui-li-desc center-wrapper">
+					<div class="ui-block-a block-settings-a">
+						<h3>Active Users</h3>
+					</div>
+					<div class="ui-block-b block-settings-b">
+						<p><b>User:</b> XX</p>
+						<p><b>TTY:</b> XX</p>
+						<p><b>From:</b> XX</p>
+						<p><b>Login:</b> XX</p>
+					</div>
+				</div>																		
+			</li>					
+		</ul>
+	</div>
+	
+    <div data-role="footer" data-position="fixed">
+        <h2>Raspberry Pi Car</h2>
+    </div>
+</div>
+
+<div data-role="page" id="rpic_page_about" data-title="RPi Car: About" data-theme="a">
+    <div data-role="header">
+        <a data-rel="back" data-transition="slide" data-icon="back">Go back</a>
+        <h6>About</h6>
+        <a href="#rpic_page_main" data-transition="slide" data-icon="forward">Main</a>
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#rpic_page_main" data-transition="slide">Main</a></li>
+				<li><a href="#rpic_page_settings" data-transition="slide">Settings</a></li>
+				<li><a href="#rpic_page_about" data-transition="slide">About</a></li>
+			</ul>
+		</div>		
+    </div>
+    <div data-role="content">
+        Some content here for page # 3
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <h2>Raspberry Pi Car</h2>
+    </div>
+</div>
+
+</body>
 </html>
