@@ -37,17 +37,17 @@ function rpic_cmd_accelerate() {
 
 // Command
 function rpic_command(command) {
-    $.get(window.location.protocol+ "//" + window.location.host + "?" + command);
+    $.get(window.location.protocol + "//" + window.location.host + "?" + command);
 }
 
 function rpic_get_version() {
     var command = "rpic_ver";
-    $.get(window.location.protocol+ "//" + window.location.host + "?" + command, rpic_show_version);
+    $.get(window.location.protocol + "//" + window.location.host + "?" + command, rpic_show_version);
 }
 
 function rpic_get_time() {
     var command = "rpic_time";
-    $.get(window.location.protocol+ "//" + window.location.host + "?" + command, rpic_show_time);
+    $.get(window.location.protocol + "//" + window.location.host + "?" + command, rpic_show_time);
 }
 
 function rpic_show_version(response) {

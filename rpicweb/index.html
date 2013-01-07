@@ -2,18 +2,21 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Raspberry Pi Car</title>
     <link rel="stylesheet" href="jquery/jquery-ui.css"/>
     <link rel="stylesheet" href="jquery/jquery.mobile-1.2.0.min.css"/>
     <link rel="stylesheet" href="themes/rpic_theme.min.css" />
 	<link rel="stylesheet" href="webapp/webapp.css" />
 	<link rel="stylesheet" href="custom/custom.css" />
+    <link rel="stylesheet" href="video/video.css" />
     <script src="jquery/jquery-1.8.0.min.js"></script>
     <script src="jquery/jquery-ui.min.js"></script>
     <script src="jquery/jquery.mobile-1.2.0.min.js"></script>
 	<script src="webapp/webapp.js"></script>
     <script src="rpic/rpic.js"></script>
 	<script src="custom/custom.js"></script>
+	<script src="video/video.js"></script>
 </head>
 <body>
 
@@ -31,9 +34,19 @@
 		</div>		
     </div>
 	<div data-role="content">
-        <div style="width: 256px; height: 160px; position: relative; margin-left: auto; margin-right: auto; background-color: #ffffff; border: 1px solid #b8b8b8;">
-            <img id="rpic_camera" src="images/camera_icon_white.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -64px; margin-top: -64px" />
+
+        <div class="video_player">
+            <div class="video_div">
+                <iframe id="cam_off" class="video_frame" src="video/video_off.html" frameborder="0"></iframe>
+            </div>
+            <div class="video_div" style="display: none">
+                <iframe id="cam_on" class="video_frame" src="" frameborder="0"></iframe>
+            </div>
+            <div class="video_control">
+                <button class="video_button" data-role="none" onclick="rpic_cmd_video(); return false">○</button>
+            </div>
         </div>
+
         <div class="ui-grid-b">
             <div class="ui-block-a">
             </div>
