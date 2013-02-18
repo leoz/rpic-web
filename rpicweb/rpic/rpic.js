@@ -50,6 +50,11 @@ function rpic_get_time() {
     $.get(window.location.protocol + "//" + window.location.host + "?" + command, rpic_show_time);
 }
 
+function rpic_get_uptime() {
+    var command = "rpic_uptime";
+    $.get(window.location.protocol + "//" + window.location.host + "?" + command, rpic_show_uptime);
+}
+
 function rpic_show_version(response) {
     $("#rpic_info_version").text(response);
 }
@@ -66,10 +71,15 @@ function rpic_show_time(response) {
     $("#rpic_info_time").text(response);
 }
 
+function rpic_show_uptime(response) {
+    $("#rpic_info_uptime").text(response);
+}
+
 function rpic_poll() {
     setTimeout(function() {
         // Update data after 1 second(s)
         rpic_get_time();
+        rpic_get_uptime();
         //Setup the next poll recursively
         rpic_poll();
     }, 1000);

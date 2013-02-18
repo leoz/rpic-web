@@ -1,7 +1,19 @@
+/******************************************************************************
+ *  Copyright (C) 2012 - 2013, Leonid Zolotarev
+ *
+ *  Licensed under the terms of the BSD license, see file COPYING
+ *  for details.
+ *
+ *  Raspberry Pi Car Controller
+ *
+ *  Header file for the rpic-web
+ *
+ *****************************************************************************/
+
 #ifndef __RPIC_WEB_H__
 #define __RPIC_WEB_H__
 
-#define RPIC_COMMANDS 9
+#define RPIC_COMMANDS 10
 
 static char* rpic_commands [RPIC_COMMANDS] = {
     "rpic_fwrd",
@@ -12,7 +24,8 @@ static char* rpic_commands [RPIC_COMMANDS] = {
     "rpic_dcl",
     "rpic_acl",
     "rpic_ver",
-    "rpic_time"
+    "rpic_time",
+    "rpic_uptime"
 };
 
 #define RPIC_CMD_VOID -1
@@ -25,5 +38,6 @@ static char* rpic_commands [RPIC_COMMANDS] = {
 #define RPIC_CMD_ACL  6
 #define RPIC_CMD_VER  7
 #define RPIC_CMD_TIME 8
+#define RPIC_CMD_UPTIME 9
 
 #endif /* __RPIC_WEB_H__ */
