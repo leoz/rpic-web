@@ -5,23 +5,16 @@
     100%{ opacity: 1; }
 }
 
-.video_player {
-	margin:0 auto;
-    border: 1px solid #b8b8b8;
-}
-
 .video_player, .video_div, .video_frame, .video_control {
-    width: 512px;
-    height: 384px;
+	margin:0 auto;
 }
 
-.video_div, .video_frame, .video_control {
-    position: absolute;
+.video_frame {
+    border: 1px solid #b8b8b8;    
 }
 
 .video_control {
-    margin: 340px 0 0 470px;
-    height: 40px;
+    margin-top: -40px;
 }
 
 .video_button {
@@ -41,19 +34,4 @@
 
     cursor: hand;
 }                       
-
-.video_off {
-    position: absolute;
-    margin: -10px 0 0 -10px;
-    width: 514px;
-    height: 386px;
-}
-
-.video_off img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -64px;
-    margin-top: -64px;
-}
 

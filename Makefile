@@ -32,6 +32,8 @@ clean:
 	rm -f *.o *~ rpic-web
 	rm -f rpicweb/*~
 	rm -f rpicweb/rpic/*~
+	rm -f rpicweb/video/*~
+	rm -f rpicweb/video_off/*~
 
 ###############################################################################
 

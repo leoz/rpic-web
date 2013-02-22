@@ -1,0 +1,9 @@
+body {
+    background: #000;
+}
+
+div.rpi_cam_off{
+	width:128px;
+	height:128px;
+}
+
