@@ -97,29 +97,29 @@
         
 		<ul data-role="listview" data-divider-theme="a" data-inset="true">					
 			<li data-theme="c">
-				<img src="images/DefaultIcon/png/128x128/time.png" />
-				<div class="ui-grid-a ui-li-desc center-wrapper">
-					<div class="ui-block-a block-settings-a">
-						<h3>Time</h3>
-					</div>
-					<div class="ui-block-b block-settings-b">
-						<b id="rpic_info_time">XX</b>
-					</div>
-				</div>																		
-			 </li>
-			<li data-theme="c">
 				<img src="images/DefaultIcon/png/128x128/info.png" />
-				<div class="ui-grid-a ui-li-desc center-wrapper">
-					<div class="ui-block-a block-settings-a">
-						<h3>Info</h3>
-					</div>
-					<div class="ui-block-b block-settings-b">
-						<p><b>Status: </b><span id="rpic_info_status">XX</span></p>
-						<p><b>Command: </b><span id="rpic_info_command">XX</span></p>
-						<p><b>Version: </b><span id="rpic_info_version">XX</span></p>
-					</div>
+				<div class="ui-li-desc center-wrapper">
+                    <div>
+					<span class="rpi-param-title">Status: </span>
+                    <span class="rpi-param-text" id="rpic_info_status">...</span>
+                    </div>
+                    <div>
+					<span class="rpi-param-title">Command: </span>
+                    <span class="rpi-param-text" id="rpic_info_command">...</span>
+                    </div>
+					<div class="rpi-param-title">Version</div>
+                    <div class="rpi-param-text" id="rpic_info_version">...</div>
 				</div>																		
 			</li>					
+			<li data-theme="c">
+				<img src="images/DefaultIcon/png/128x128/time.png" />
+				<div class="ui-li-desc center-wrapper">
+					<div class="rpi-param-title">Time</div>
+					<div class="rpi-param-text" id="rpic_info_time">...</div>
+					<div class="rpi-param-title">Uptime</div>
+					<div class="rpi-param-text" id="rpic_info_uptime">...</div>
+				</div>																		
+			</li>
 		</ul>                
         
 	</div>    
@@ -144,17 +144,6 @@
 	
 	<div data-role="content">
 		<ul data-role="listview" data-divider-theme="a" data-inset="true">					
-			<li data-theme="c">
-				<img src="images/DefaultIcon/png/128x128/time-alt.png" />
-				<div class="ui-grid-a ui-li-desc center-wrapper">
-					<div class="ui-block-a block-settings-a">
-						<h3>Uptime</h3>
-					</div>
-					<div class="ui-block-b block-settings-b">
-						<b id="rpic_info_uptime">XX hours XX minutes XX seconds</b>
-					</div>
-				</div>																		
-			 </li>
 			<li data-theme="c">
 				<img src="images/DefaultIcon/png/128x128/hardware-processor.png" />
 				<div class="ui-grid-a ui-li-desc center-wrapper">

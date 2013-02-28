@@ -14,11 +14,11 @@ CC=gcc
 CFLAGS=	-W -Wall -I../mongoose -I../rpic-lib -pthread -g
 LIBS=-ldl -L../mongoose -L../rpic-lib -lmongoose -lrpic
 
-SOURCES=rpic-web.c
+SOURCES=rpic-web.c rpic-sys.c
 OBJECTS=$(SOURCES:.cpp=.o)
 TARGETS=rpic-web
 
-rpicweb_objects= rpic-web.o
+rpicweb_objects= rpic-web.o rpic-sys.o
 
 all: $(SOURCES) $(TARGETS)
 
@@ -31,6 +31,7 @@ rpic-web: $(rpicweb_objects)
 clean:
 	rm -f *.o *~ rpic-web
 	rm -f rpicweb/*~
+	rm -f rpicweb/custom/*~
 	rm -f rpicweb/rpic/*~
 	rm -f rpicweb/video/*~
 	rm -f rpicweb/video_off/*~
